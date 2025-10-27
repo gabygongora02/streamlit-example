@@ -29,7 +29,7 @@ def create_sales_bar_chart(df_top_products):
 # Function to create bar chart for profit
 def create_profit_bar_chart(df_top_profit_products):
     fig = px.bar(df_top_profit_products, x='Product Name', y='Profit', title='Top 5 Products by Profit')
-    fig.update_layout(xaxis_tickangle=-45)
+    fig.update_layout(xaxis=dict(tickangle=-45, automargin=True, tickfont=dict(size=10)), yaxis=dict(title='Profit'), xaxis_title='Product Name')
     return fig
 
 # Streamlit App
