@@ -36,7 +36,7 @@ def create_profit_bar_chart(df_top_profit_products):
 def main():
     st.title("Análisis de Ventas y Ganancias de Productos")
 
-    file_path = "SalidaVentas.xlsx"
+    file_path = "/content/drive/MyDrive/Herramientas Datos/SalidaVentas.xlsx"
     df = load_data(file_path)
 
     st.write("Datos cargados exitosamente:")
