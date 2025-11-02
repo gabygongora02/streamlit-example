@@ -39,9 +39,6 @@ def main():
     file_path = "SalidaVentas.xlsx"
     df = load_data(file_path)
 
-    st.write("Datos cargados exitosamente:")
-    st.dataframe(df.head())
-
     st.sidebar.header("Filtros")
 
     region_options = ['Todas'] + list(df['Region'].unique())
@@ -65,6 +62,12 @@ def main():
         sales_title = "Top 5 Productos por Ventas en todas las Regiones"
         profit_title = "Top 5 Productos por Ganancia en todas las Regiones"
 
+    st.sidebar.markdown("---")
+    show_dataframe = st.sidebar.checkbox("Mostrar DataFrame Filtrado")
+
+    if show_dataframe:
+        st.write("Datos filtrados:")
+        st.dataframe(filtered_df)
 
     st.header(sales_title)
     top_sales_products = get_top_products_by_sales(filtered_df)
