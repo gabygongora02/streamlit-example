@@ -42,13 +42,22 @@ def main():
     st.write("Datos cargados exitosamente:")
     st.dataframe(df.head())
 
-    st.header("Top 5 Productos por Ventas")
-    top_sales_products = get_top_products_by_sales(df)
+    st.header("Filtro por Región")
+    region_options = ['Todas'] + list(df['Region'].unique())
+    selected_region = st.selectbox("Selecciona una Región", region_options)
+
+    if selected_region != 'Todas':
+        filtered_df = df[df['Region'] == selected_region]
+    else:
+        filtered_df = df
+
+    st.header(f"Top 5 Productos por Ventas en {selected_region}")
+    top_sales_products = get_top_products_by_sales(filtered_df)
     sales_fig = create_sales_bar_chart(top_sales_products)
     st.plotly_chart(sales_fig)
 
-    st.header("Top 5 Productos por Ganancia")
-    top_profit_products = get_top_products_by_profit(df)
+    st.header(f"Top 5 Productos por Ganancia en {selected_region}")
+    top_profit_products = get_top_products_by_profit(filtered_df)
     profit_fig = create_profit_bar_chart(top_profit_products)
     st.plotly_chart(profit_fig)
 
